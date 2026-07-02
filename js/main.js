@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initBanner();
   initNavbar();
   initMobileMenu();
   initScrollAnimations();
@@ -6,12 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNav();
 });
 
+/* ----- Announcement banner close ----- */
+function initBanner() {
+  const banner = document.getElementById('announcement-banner');
+  const closeBtn = document.getElementById('banner-close');
+
+  if (!banner || !closeBtn) return;
+
+  closeBtn.addEventListener('click', () => {
+    banner.classList.add('hidden');
+  });
+}
+
 /* ----- Navbar scroll effect ----- */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
+  if (!navbar) return;
 
   const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });

@@ -8,28 +8,27 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Noto Sans KR"', 'system-ui', 'sans-serif'],
-            display: ['"Playfair Display"', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            display: ['"Syne"', 'system-ui', 'sans-serif'],
           },
           colors: {
-            brand: {
-              50: '#f0f4ff',
-              100: '#e0e9ff',
-              200: '#c7d6fe',
-              300: '#a4b8fc',
-              400: '#8093f8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              800: '#3730a3',
-              900: '#312e81',
+            cream: '#FDFCF8',
+            forest: {
+              DEFAULT: '#0A4232',
+              light: '#0D5240',
+            },
+            accent: {
+              yellow: '#FFD54F',
+              burgundy: '#6B1017',
+              rose: '#F4C2C2',
+              lime: '#D4E157',
             },
           },
         },
@@ -37,64 +36,95 @@
     };
   </script>
 </head>
-<body class="font-sans text-slate-700 bg-slate-50 antialiased">
+<body class="font-sans text-forest bg-cream antialiased">
+
+  <!-- Announcement Banner -->
+  <div id="announcement-banner" class="announcement-banner">
+    <p class="announcement-text">
+      새로운 프로젝트와 협업 기회를 찾고 있습니다 — <a href="#contact" class="announcement-link">연락하기</a>
+    </p>
+    <button id="banner-close" class="announcement-close" aria-label="배너 닫기">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
 
   <!-- Navigation -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#hero" class="font-display text-2xl font-bold text-brand-700 tracking-tight">Uni</a>
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+  <header id="navbar" class="site-header">
+    <nav class="nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-dot logo-dot-1"></span>
+        <span class="logo-dot logo-dot-2"></span>
+        <span class="logo-dot logo-dot-3"></span>
+        uni
+      </a>
+      <ul class="nav-links hidden md:flex">
         <li><a href="#about" class="nav-link">소개</a></li>
         <li><a href="#skills" class="nav-link">역량</a></li>
         <li><a href="#experience" class="nav-link">경험</a></li>
         <li><a href="#education" class="nav-link">학력</a></li>
         <li><a href="#contact" class="nav-link">연락처</a></li>
       </ul>
-      <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/60 transition-colors" aria-label="메뉴 열기">
-        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <a href="#contact" class="nav-cta hidden md:inline-flex">연락하기</a>
+      <button id="menu-btn" class="menu-btn md:hidden" aria-label="메뉴 열기">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </nav>
-    <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <ul class="px-6 py-4 space-y-3 text-sm font-medium text-slate-600">
-        <li><a href="#about" class="mobile-nav-link block py-2">소개</a></li>
-        <li><a href="#skills" class="mobile-nav-link block py-2">역량</a></li>
-        <li><a href="#experience" class="mobile-nav-link block py-2">경험</a></li>
-        <li><a href="#education" class="mobile-nav-link block py-2">학력</a></li>
-        <li><a href="#contact" class="mobile-nav-link block py-2">연락처</a></li>
+    <div id="mobile-menu" class="mobile-menu md:hidden hidden">
+      <ul>
+        <li><a href="#about" class="mobile-nav-link">소개</a></li>
+        <li><a href="#skills" class="mobile-nav-link">역량</a></li>
+        <li><a href="#experience" class="mobile-nav-link">경험</a></li>
+        <li><a href="#education" class="mobile-nav-link">학력</a></li>
+        <li><a href="#contact" class="mobile-nav-link">연락처</a></li>
       </ul>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="hero-bg absolute inset-0"></div>
-    <div class="hero-pattern absolute inset-0 opacity-30"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
-      <p class="fade-up text-brand-600 font-medium tracking-widest uppercase text-sm mb-4">Student Portfolio</p>
-      <h1 class="fade-up font-display text-5xl md:text-7xl font-bold text-slate-900 mb-4">
-        안녕하세요, <span class="text-brand-600">Uni</span>입니다
+  <section id="hero" class="hero-section">
+    <div class="geo-shapes" aria-hidden="true">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+      <div class="shape shape-6"></div>
+      <div class="shape shape-7"></div>
+    </div>
+    <div class="hero-content">
+      <p class="fade-up hero-eyebrow">Student Portfolio</p>
+      <h1 class="fade-up hero-title">
+        진정한 나를<br />빛내다
       </h1>
-      <p class="fade-up text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+      <p class="fade-up hero-subtitle">
         배움을 바탕으로 꾸준히 성장하며, 새로운 지식을 실제 프로젝트와 경험에 연결하는 학생입니다.
       </p>
-      <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="fade-up hero-actions">
         <a href="#experience" class="btn-primary">경험 보기</a>
         <a href="#contact" class="btn-secondary">연락하기</a>
       </div>
-      <div class="fade-up mt-16 flex items-center justify-center gap-2 text-slate-400">
-        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-        <span class="text-sm">스크롤하여 더 알아보기</span>
+      <div class="fade-up hero-tags">
+        <span class="pill-tag">컴퓨터공학</span>
+        <span class="pill-tag">문제 해결</span>
+        <span class="pill-tag">협업</span>
+        <span class="pill-tag">성장</span>
       </div>
+    </div>
+    <div class="scroll-hint fade-up">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+      <span>스크롤하여 더 알아보기</span>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-6">
+  <section id="about" class="section-padding section-cream">
+    <div class="section-container">
       <div class="section-header fade-in">
         <span class="section-label">About</span>
         <h2 class="section-title">소개</h2>
@@ -102,12 +132,12 @@
       <div class="grid md:grid-cols-5 gap-10 items-start">
         <div class="md:col-span-2 fade-in">
           <div class="about-card">
-            <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center mb-6 shadow-lg shadow-brand-200">
-              <span class="text-4xl font-display font-bold text-white">U</span>
+            <div class="about-avatar">
+              <span>U</span>
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-1">Uni</h3>
-            <p class="text-brand-600 font-medium mb-4">Student · 컴퓨터공학</p>
-            <div class="flex items-center gap-2 text-sm text-slate-500">
+            <h3 class="about-name">Uni</h3>
+            <p class="about-role">Student · 컴퓨터공학</p>
+            <div class="about-location">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -117,24 +147,24 @@
           </div>
         </div>
         <div class="md:col-span-3 fade-in">
-          <p class="text-lg leading-relaxed text-slate-600 mb-6">
+          <p class="body-text mb-6">
             배움을 바탕으로 꾸준히 성장하며 새로운 지식을 실제 프로젝트와 경험에 연결하는 학생입니다. 다양한 활동을 통해 문제 해결 능력과 협업 역량을 키우는 것을 목표로 하고 있습니다.
           </p>
-          <p class="text-lg leading-relaxed text-slate-600 mb-8">
+          <p class="body-text mb-8">
             책임감 있는 자세와 빠른 학습 능력을 강점으로 삼아 새로운 도전에 적극적으로 참여합니다. 미래의 전문 분야에서 지속적으로 성장하며 긍정적인 영향을 만드는 인재가 되고자 합니다.
           </p>
           <div class="grid sm:grid-cols-3 gap-4">
             <div class="highlight-box">
-              <div class="text-2xl font-bold text-brand-600">3+</div>
-              <div class="text-sm text-slate-500 mt-1">활동 경험</div>
+              <div class="highlight-number">3+</div>
+              <div class="highlight-label">활동 경험</div>
             </div>
-            <div class="highlight-box">
-              <div class="text-2xl font-bold text-brand-600">2</div>
-              <div class="text-sm text-slate-500 mt-1">학위 과정</div>
+            <div class="highlight-box highlight-box-rose">
+              <div class="highlight-number">2</div>
+              <div class="highlight-label">학위 과정</div>
             </div>
-            <div class="highlight-box">
-              <div class="text-2xl font-bold text-brand-600">3</div>
-              <div class="text-sm text-slate-500 mt-1">언어</div>
+            <div class="highlight-box highlight-box-lime">
+              <div class="highlight-number">3</div>
+              <div class="highlight-label">언어</div>
             </div>
           </div>
         </div>
@@ -143,72 +173,78 @@
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="section-padding bg-slate-50">
-    <div class="max-w-5xl mx-auto px-6">
+  <section id="skills" class="section-padding section-warm">
+    <div class="section-container">
       <div class="section-header fade-in">
         <span class="section-label">Skills</span>
         <h2 class="section-title">역량</h2>
       </div>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="fade-in">
-          <h3 class="text-lg font-semibold text-slate-800 mb-6">핵심 역량</h3>
+          <h3 class="subsection-title">핵심 역량</h3>
           <div class="space-y-5">
             <div class="skill-item" data-stars="4">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">Problem Solving</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">Problem Solving</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
             <div class="skill-item" data-stars="5">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">Communication</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">Communication</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
             <div class="skill-item" data-stars="4">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">Microsoft Office</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">Microsoft Office</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
           </div>
         </div>
         <div class="fade-in">
-          <h3 class="text-lg font-semibold text-slate-800 mb-6">언어</h3>
+          <h3 class="subsection-title">언어</h3>
           <div class="space-y-5">
             <div class="skill-item" data-stars="5">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">Korean</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">Korean</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
             <div class="skill-item" data-stars="4">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">English</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">English</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
             <div class="skill-item" data-stars="2">
               <div class="flex justify-between items-center mb-2">
-                <span class="font-medium text-slate-700">Japanese</span>
-                <span class="text-sm text-slate-400 star-label"></span>
+                <span class="skill-name">Japanese</span>
+                <span class="star-label"></span>
               </div>
               <div class="star-bar"></div>
             </div>
           </div>
         </div>
       </div>
+      <div class="fade-in skills-tags mt-10">
+        <span class="pill-tag">problem solving</span>
+        <span class="pill-tag">communication</span>
+        <span class="pill-tag">collaboration</span>
+        <span class="pill-tag">leadership</span>
+      </div>
     </div>
   </section>
 
   <!-- Experience -->
-  <section id="experience" class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-6">
+  <section id="experience" class="section-padding section-cream">
+    <div class="section-container">
       <div class="section-header fade-in">
         <span class="section-label">Experience</span>
         <h2 class="section-title">경험</h2>
@@ -218,39 +254,51 @@
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <h3 class="text-lg font-bold text-slate-900">학생회</h3>
+              <h3 class="card-title">학생회</h3>
               <span class="timeline-badge">2025/03 ~ Present</span>
             </div>
-            <p class="text-brand-600 font-medium text-sm mb-3">Student Council Member</p>
-            <p class="text-slate-600 leading-relaxed">
+            <p class="card-role">Student Council Member</p>
+            <p class="card-body">
               학생회 구성원으로 학교 행사 기획과 운영을 지원하며 다양한 부서와 협업하였습니다. 행사 일정 관리와 참여자 소통을 담당하여 원활한 운영에 기여했고, 책임감과 조직 관리 능력을 향상시켰습니다.
             </p>
+            <div class="card-tags">
+              <span class="pill-tag">기획</span>
+              <span class="pill-tag">협업</span>
+            </div>
           </div>
         </article>
         <article class="timeline-item fade-in">
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <h3 class="text-lg font-bold text-slate-900">대학교 학습 멘토링 프로그램</h3>
+              <h3 class="card-title">대학교 학습 멘토링 프로그램</h3>
               <span class="timeline-badge">2024/09 ~ 2025/02</span>
             </div>
-            <p class="text-brand-600 font-medium text-sm mb-3">Peer Mentor</p>
-            <p class="text-slate-600 leading-relaxed">
+            <p class="card-role">Peer Mentor</p>
+            <p class="card-body">
               후배들의 학습을 지원하며 전공 개념을 쉽게 설명하고 학습 계획을 함께 수립하였습니다. 정기적인 피드백을 제공하여 학습 성과 향상에 기여했으며 의사소통 능력을 발전시켰습니다.
             </p>
+            <div class="card-tags">
+              <span class="pill-tag">멘토링</span>
+              <span class="pill-tag">교육</span>
+            </div>
           </div>
         </article>
         <article class="timeline-item fade-in">
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
-              <h3 class="text-lg font-bold text-slate-900">교내 프로젝트 팀</h3>
+              <h3 class="card-title">교내 프로젝트 팀</h3>
               <span class="timeline-badge">2024/03 ~ 2024/12</span>
             </div>
-            <p class="text-brand-600 font-medium text-sm mb-3">Team Member</p>
-            <p class="text-slate-600 leading-relaxed">
+            <p class="card-role">Team Member</p>
+            <p class="card-body">
               팀 프로젝트에서 자료 조사와 발표 자료 제작을 담당하였습니다. 역할을 분담하여 프로젝트를 성공적으로 완료했고 협업과 문제 해결 경험을 쌓았습니다.
             </p>
+            <div class="card-tags">
+              <span class="pill-tag">프로젝트</span>
+              <span class="pill-tag">발표</span>
+            </div>
           </div>
         </article>
       </div>
@@ -258,8 +306,8 @@
   </section>
 
   <!-- Education -->
-  <section id="education" class="section-padding bg-slate-50">
-    <div class="max-w-5xl mx-auto px-6">
+  <section id="education" class="section-padding section-warm">
+    <div class="section-container">
       <div class="section-header fade-in">
         <span class="section-label">Education</span>
         <h2 class="section-title">학력</h2>
@@ -274,25 +322,25 @@
             </svg>
           </div>
           <span class="edu-degree">Bachelor's Degree</span>
-          <h3 class="text-xl font-bold text-slate-900 mt-2 mb-1">한국대학교</h3>
-          <p class="text-brand-600 font-medium mb-4">컴퓨터공학</p>
-          <p class="text-sm text-slate-500 flex items-center gap-2">
+          <h3 class="card-title mt-2 mb-1">한국대학교</h3>
+          <p class="card-role mb-4">컴퓨터공학</p>
+          <p class="edu-date">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
             2023/03 ~ 2027/02
           </p>
         </article>
-        <article class="edu-card fade-in">
+        <article class="edu-card edu-card-accent fade-in">
           <div class="edu-icon edu-icon-master">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
             </svg>
           </div>
           <span class="edu-degree">Master's Degree</span>
-          <h3 class="text-xl font-bold text-slate-900 mt-2 mb-1">한국대학교 대학원</h3>
-          <p class="text-brand-600 font-medium mb-4">인공지능</p>
-          <p class="text-sm text-slate-500 flex items-center gap-2">
+          <h3 class="card-title mt-2 mb-1">한국대학교 대학원</h3>
+          <p class="card-role mb-4">인공지능</p>
+          <p class="edu-date">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
@@ -304,14 +352,14 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-6">
+  <section id="contact" class="section-padding section-cream">
+    <div class="section-container">
       <div class="section-header fade-in">
         <span class="section-label">Contact</span>
         <h2 class="section-title">연락처</h2>
       </div>
       <div class="contact-wrapper fade-in">
-        <p class="text-lg text-slate-600 mb-10 text-center max-w-xl mx-auto">
+        <p class="contact-intro">
           새로운 도전과 협업 기회에 항상 열려 있습니다. 편하게 연락해 주세요.
         </p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -358,10 +406,59 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-8">
-    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm">&copy; 2026 Uni. All rights reserved.</p>
-      <p class="text-sm">Made with passion for growth</p>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="logo footer-logo">
+            <span class="logo-dot logo-dot-1"></span>
+            <span class="logo-dot logo-dot-2"></span>
+            <span class="logo-dot logo-dot-3"></span>
+            uni
+          </a>
+          <p class="footer-tagline">배움과 성장을 추구하는 컴퓨터공학 학생의 포트폴리오</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">탐색</h4>
+          <ul>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#skills">역량</a></li>
+            <li><a href="#experience">경험</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">더 알아보기</h4>
+          <ul>
+            <li><a href="#education">학력</a></li>
+            <li><a href="#contact">연락처</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">연락</h4>
+          <ul>
+            <li><a href="mailto:uni@example.com">uni@example.com</a></li>
+            <li><a href="tel:+821012345678">+82 10-1234-5678</a></li>
+            <li>Seoul, South Korea</li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="GitHub" class="social-link">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="social-link">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" aria-label="Email" class="social-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Uni. All rights reserved.</p>
+        <p>Made with passion for growth</p>
+      </div>
     </div>
   </footer>
 
